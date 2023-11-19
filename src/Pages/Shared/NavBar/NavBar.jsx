@@ -1,12 +1,45 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 
 
 const NavBar = () => {
+    const { user, logOut, setLoading } = useContext(AuthContext);
+    const [cart] = useCart()
+
+    const handleLogOut = () => {
+        setLoading(false)
+        logOut()
+            .then(() => {
+                setLoading(false)
+                console.log('hello')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
     const navOptions = <>
         <li className="text-black text-lg"><Link to='/'>HOME</Link></li>
-        <li className="text-black text-lg"><Link to='/contact-us'>CONTACT US</Link></li>
-        <li className="text-black text-lg"><Link to='/dashboard'>DASHBOARD</Link></li>
+        <li className="text-black text-lg"><Link to='/order/salad'>Order Food</Link></li>
         <li className="text-black text-lg"><Link to='/menu'>Our Menu</Link></li>
+        <li>
+            <Link to='/dashboard/cart'>
+                <button className="btn">
+                    <FaShoppingCart className="text-xl"></FaShoppingCart>
+                    <div className="badge badge-secondary">{cart.length}</div>
+                </button>
+            </Link>
+        </li>
+
+        {
+            user ? <>
+                <li onClick={handleLogOut} className="text-black text-lg">Logout</li>
+            </>
+                : <li className="text-black text-lg"><Link to='/login'>Login</Link></li>
+        }
 
     </>
     return (

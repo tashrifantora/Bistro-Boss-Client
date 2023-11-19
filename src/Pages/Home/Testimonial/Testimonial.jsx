@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -15,12 +15,21 @@ import { Navigation } from 'swiper/modules';
 const Testimonial = () => {
     const [reviews, setReviews] = useState([]);
 
-    fetch('reviews.json')
+    /* fetch('http://localhost:5000/reviews')
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             setReviews(data)
-        })
+        }) */
+
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                setReviews(data)
+            })
+    }, [])
 
     return (
         <section className="my-20">
