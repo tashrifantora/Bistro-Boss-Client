@@ -1,7 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaBook, FaEnvelope, FaHome, FaList, FaSearch, FaUser } from "react-icons/fa";
+import { FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import useCart from "../../Hooks/useCart";
 import { ImSpoonKnife } from "react-icons/im";
+import { MdOutlineRateReview } from "react-icons/md";
+
 import useAdmin from "../../Hooks/useAdmin";
 
 
@@ -31,7 +33,7 @@ const Dashboard = () => {
                                 </li>
 
                                 <li>
-                                    <NavLink to='/dashboard/review'><FaList className="text-xl"></FaList>Manage Item</NavLink>
+                                    <NavLink to='/dashboard/manage-item'><FaList className="text-xl"></FaList>Manage Item</NavLink>
                                 </li>
 
                                 <li>
@@ -42,12 +44,33 @@ const Dashboard = () => {
                                 <li>
                                     <NavLink to='/dashboard/users'><FaUser className="text-xl"></FaUser>All User</NavLink>
                                 </li>
-                            </> :
-
+                            </>
+                            :
                             <>
+                                <li>
+                                    <NavLink to='/dashboard/cart'><FaHome className="text-xl"></FaHome>User Home</NavLink>
+                                </li>
 
+                                <li>
+                                    <NavLink to='/dashboard'><FaCalendar className="text-xl"></FaCalendar>--</NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink to='/dashboard/review'><FaShoppingCart className="text-xl"></FaShoppingCart>My Cart ({cart.length})</NavLink>
+                                </li>
+
+                                <li>
+
+                                    <NavLink to='/dashboard/mybookings'><MdOutlineRateReview className="text-xl"></MdOutlineRateReview>Add a review</NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink to='/dashboard/payment-history'><FaList className="text-xl"></FaList>Payment History</NavLink>
+                                </li>
                             </>
                     }
+
+
 
 
                     <div className="divider"></div>

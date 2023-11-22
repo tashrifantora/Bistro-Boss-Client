@@ -1,22 +1,22 @@
-import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
-import { FaUtensils } from "react-icons/fa";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
-
-
-const AddItems = () => {
+const UpdateItem = () => {
     const { handleSubmit, register } = useForm();
-
+    const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
-    const axiosSecure = useAxiosSecure()
+    const item = useLoaderData([])
+    console.log(item)
+
+    const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+
+    const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
     const onSubmit = async (data) => {
 
@@ -38,9 +38,9 @@ const AddItems = () => {
             }
 
             // Now backend sending process
-            const menuRes = await axiosSecure.post('/menu', menuItem)
+            const menuRes = await axiosSecure.patch('/menu', menuItem)
             console.log(menuRes.data)
-            if (menuRes.data.insertedId) {
+            if (menuRes.data.modifiedCount > 0) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Well done',
@@ -53,12 +53,13 @@ const AddItems = () => {
         }
         console.log("with img url", res.data)
     };
+
     return (
         <div>
             <SectionTitle
-                heading={"ADD AN ITEM"}
-                subheading={"---What's new?---"}
+                heading={"UPDATE ITEM"}
             ></SectionTitle>
+
 
             <div className="bg-[#F3F3F3] p-5 rounded ">
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -116,7 +117,7 @@ const AddItems = () => {
                     </div>
 
                     <button className="btn bg-[#D1A054] ">
-                        Add Item<FaUtensils className="ml-4"></FaUtensils>
+                        Update Item
                     </button>
                 </form>
             </div>
@@ -124,4 +125,4 @@ const AddItems = () => {
     );
 };
 
-export default AddItems;
+export default UpdateItem;

@@ -3,6 +3,7 @@ import useCart from "../../../Hooks/useCart";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 const Cart = () => {
@@ -43,7 +44,12 @@ const Cart = () => {
             <div className="flex justify-evenly">
                 <h1 className="text-4xl">Total orders: {cart.length}</h1>
                 <h1 className="text-3xl">Total Price: ${totalPrice}</h1>
-                <button className="btn bg-[#D1A054]">Pay</button>
+                {cart.length ? <Link to='/dashboard/payment'>
+                    <button className="btn bg-[#D1A054]">Pay</button>
+                </Link>
+                    :
+                    <button disabled className="btn bg-[#D1A054]">Pay</button>
+                }
             </div>
 
             {/* Table */}
