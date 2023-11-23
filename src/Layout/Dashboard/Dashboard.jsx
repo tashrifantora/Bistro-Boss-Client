@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingBag, FaShoppingCart, FaUser, FaWallet } from "react-icons/fa";
 import useCart from "../../Hooks/useCart";
 import { ImSpoonKnife } from "react-icons/im";
 import { MdOutlineRateReview } from "react-icons/md";
@@ -25,7 +25,7 @@ const Dashboard = () => {
                         isAdmin ?
                             <>
                                 <li>
-                                    <NavLink to='/dashboard/cart'><FaHome className="text-xl"></FaHome>Admin Home</NavLink>
+                                    <NavLink to='/dashboard/admin-home'><FaHome className="text-xl"></FaHome>Admin Home</NavLink>
                                 </li>
 
                                 <li>
@@ -48,11 +48,15 @@ const Dashboard = () => {
                             :
                             <>
                                 <li>
-                                    <NavLink to='/dashboard/cart'><FaHome className="text-xl"></FaHome>User Home</NavLink>
+                                    <NavLink to='/dashboard/user-home'><FaHome className="text-xl"></FaHome>User Home</NavLink>
                                 </li>
 
                                 <li>
-                                    <NavLink to='/dashboard'><FaCalendar className="text-xl"></FaCalendar>--</NavLink>
+                                    <NavLink to='/dashboard'><FaCalendar className="text-xl"></FaCalendar>Reservation</NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink to='/dashboard/payment-history'><FaWallet className="text-xl"></FaWallet>Payment History</NavLink>
                                 </li>
 
                                 <li>
@@ -60,13 +64,14 @@ const Dashboard = () => {
                                 </li>
 
                                 <li>
-
                                     <NavLink to='/dashboard/mybookings'><MdOutlineRateReview className="text-xl"></MdOutlineRateReview>Add a review</NavLink>
                                 </li>
 
                                 <li>
-                                    <NavLink to='/dashboard/payment-history'><FaList className="text-xl"></FaList>Payment History</NavLink>
+                                    <NavLink to='/dashboard/mybookings'><MdOutlineRateReview className="text-xl"></MdOutlineRateReview>My Booking</NavLink>
                                 </li>
+
+
                             </>
                     }
 
@@ -75,7 +80,7 @@ const Dashboard = () => {
 
                     <div className="divider"></div>
 
-                    {/* User */}
+                    {/* Common For All */}
 
                     <li>
                         <NavLink to='/'><FaHome className="text-xl"></FaHome>Home</NavLink>
@@ -87,6 +92,10 @@ const Dashboard = () => {
 
                     <li>
                         <NavLink to='/order/contact'><FaEnvelope className="text-xl"></FaEnvelope>Contact</NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to='/order/contact'><FaShoppingBag className="text-xl"></FaShoppingBag>Shop</NavLink>
                     </li>
 
                 </ul>

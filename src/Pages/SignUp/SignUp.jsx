@@ -33,7 +33,7 @@ const SignUp = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser)
 
-                UpdateUserProfile(name, email, photo)
+                UpdateUserProfile(name, photo)
                     .then(() => {
 
                         const userInfo = {

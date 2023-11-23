@@ -5,6 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const PaymentHistory = () => {
     const { user } = useAuth();
+    // [Can not find user (Null)]
     console.log("User from payment history", user)
     const axiosSecure = useAxiosSecure();
 
@@ -15,6 +16,8 @@ const PaymentHistory = () => {
             return res.data;
         }
     })
+    console.log(payments);
+
     return (
         <div>
             <h2 className="text3-xl">Total Payments: {payments.length}</h2>

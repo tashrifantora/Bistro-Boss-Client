@@ -83,13 +83,14 @@ const CheckoutForm = () => {
                 // Set payment in the data base[***Have Q.***]
                 const paymentInfo = {
                     email: user.email,
-                    price: cart.price,
+                    price: totalPrice,
                     transactionId: paymentIntent.id,
                     date: new Date(),
                     cartIds: cart.map(item => item._id),
                     menuItemIds: cart.map(item => item.menuId),
                     status: 'pending'
                 }
+                console.log(paymentInfo)
 
                 // Sent Database
                 const res = await axiosSecure.post('/payments', paymentInfo)

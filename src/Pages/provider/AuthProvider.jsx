@@ -26,11 +26,11 @@ const AuthProvider = ({ children }) => {
     }
 
     // Update profile
-    const UpdateUserProfile = (photo, name, email) => {
+    const UpdateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo,
-            email: email
+
         });
     }
 
